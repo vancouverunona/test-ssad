@@ -1,0 +1,868 @@
+{
+  "summary": {
+    "title": "HR-Parse — TO-BE",
+    "owner": "Student Team",
+    "description": "Target architecture for Variant 13 with validation, sandboxing, least privilege, defense in depth and fail-safe defaults.",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [
+      {
+        "title": "TO-BE",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "diagramType": "STRIDE",
+        "id": 0,
+        "diagramJson": {
+          "cells": [
+            {
+              "type": "tm.Actor",
+              "size": {
+                "width": 160,
+                "height": 80
+              },
+              "position": {
+                "x": 10,
+                "y": 150
+              },
+              "angle": 0,
+              "id": "f44b1f65-669c-5a8e-89f1-cfe794298976",
+              "z": 1,
+              "threats": [],
+              "providesAuthentication": false,
+              "outOfScope": false,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "Candidate\n(browser)"
+                },
+                ".undefined": {
+                  "class": "undefinedhasNoOpenThreats isInScope"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Actor",
+              "size": {
+                "width": 160,
+                "height": 80
+              },
+              "position": {
+                "x": 10,
+                "y": 430
+              },
+              "angle": 0,
+              "id": "684a54db-f9b7-5627-b34b-41a16b95127e",
+              "z": 1,
+              "threats": [],
+              "providesAuthentication": true,
+              "outOfScope": false,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "Administrator\n(HR/IT)"
+                },
+                ".undefined": {
+                  "class": "undefinedhasNoOpenThreats isInScope"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Process",
+              "size": {
+                "width": 160,
+                "height": 90
+              },
+              "position": {
+                "x": 200,
+                "y": 120
+              },
+              "angle": 0,
+              "id": "7c277461-737c-592f-ae13-9ae0aea951f9",
+              "z": 2,
+              "privilegeLevel": "Gateway",
+              "threats": [],
+              "outOfScope": false,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "API Gateway\nTLS + rate limit"
+                },
+                ".undefined": {
+                  "class": "undefinedhasNoOpenThreats isInScope"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Process",
+              "size": {
+                "width": 160,
+                "height": 90
+              },
+              "position": {
+                "x": 400,
+                "y": 120
+              },
+              "angle": 0,
+              "id": "28c36591-a931-5658-a756-edc254e74ba2",
+              "z": 2,
+              "privilegeLevel": "Application",
+              "threats": [],
+              "outOfScope": false,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "HR Web Application"
+                },
+                ".undefined": {
+                  "class": "undefinedhasNoOpenThreats isInScope"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Process",
+              "size": {
+                "width": 160,
+                "height": 90
+              },
+              "position": {
+                "x": 590,
+                "y": 120
+              },
+              "angle": 0,
+              "id": "292d3e03-5463-572c-b464-9c42d6f71c49",
+              "z": 2,
+              "privilegeLevel": "Application",
+              "threats": [],
+              "outOfScope": false,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "Input Validation\nPDF allowlist\nMIME + magic bytes\nsize/page limits"
+                },
+                ".undefined": {
+                  "class": "undefinedhasNoOpenThreats isInScope"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Store",
+              "size": {
+                "width": 170,
+                "height": 85
+              },
+              "position": {
+                "x": 790,
+                "y": 120
+              },
+              "angle": 0,
+              "id": "c36d46f7-1e55-5150-a102-b2d4d7e10d71",
+              "z": 3,
+              "threats": [],
+              "isEncrypted": true,
+              "storesCredentials": false,
+              "isALog": false,
+              "outOfScope": false,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "Job Queue"
+                },
+                ".undefined": {
+                  "class": "undefinedhasNoOpenThreats isInScope"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Process",
+              "size": {
+                "width": 160,
+                "height": 90
+              },
+              "position": {
+                "x": 790,
+                "y": 320
+              },
+              "angle": 0,
+              "id": "55080bcf-01af-504f-9fb7-d261210f109d",
+              "z": 2,
+              "privilegeLevel": "non-root",
+              "threats": [
+                {
+                  "status": "Open",
+                  "severity": "Medium",
+                  "title": "Unknown PDF parser vulnerability",
+                  "type": "Elevation of privilege",
+                  "description": "A zero-day vulnerability may still exist in the parser. Sandboxing limits impact but does not remove the underlying vulnerability.",
+                  "mitigation": "Keep the parser patched, monitor dependencies, and retain sandbox isolation."
+                },
+                {
+                  "status": "Open",
+                  "severity": "Medium",
+                  "title": "High-volume valid PDF submissions",
+                  "type": "Denial of service",
+                  "description": "An attacker may submit many valid PDFs that pass validation and consume parser capacity.",
+                  "mitigation": "Apply API rate limiting, quotas and bounded queue capacity."
+                }
+              ],
+              "outOfScope": false,
+              "hasOpenThreats": true,
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "PDF Parser Sandbox\nnon-root\nread-only FS\nno network\nCPU/RAM/time limits"
+                },
+                ".undefined": {
+                  "class": "undefinedhasOpenThreats isInScope"
+                },
+                ".element-text": {
+                  "class": "element-text hasOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Process",
+              "size": {
+                "width": 160,
+                "height": 90
+              },
+              "position": {
+                "x": 560,
+                "y": 360
+              },
+              "angle": 0,
+              "id": "992219f8-8932-57bf-83dc-6abbcad8baaf",
+              "z": 2,
+              "privilegeLevel": "Service",
+              "threats": [],
+              "outOfScope": false,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "Candidate Service\nleast privilege"
+                },
+                ".undefined": {
+                  "class": "undefinedhasNoOpenThreats isInScope"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Store",
+              "size": {
+                "width": 170,
+                "height": 85
+              },
+              "position": {
+                "x": 360,
+                "y": 360
+              },
+              "angle": 0,
+              "id": "300dab9e-6dc0-5372-bed1-d76ed9c65782",
+              "z": 3,
+              "threats": [],
+              "isEncrypted": true,
+              "storesCredentials": false,
+              "isALog": false,
+              "outOfScope": false,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "Candidate Storage"
+                },
+                ".undefined": {
+                  "class": "undefinedhasNoOpenThreats isInScope"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Store",
+              "size": {
+                "width": 170,
+                "height": 85
+              },
+              "position": {
+                "x": 360,
+                "y": 500
+              },
+              "angle": 0,
+              "id": "b634287a-37f9-5c8f-a7e5-ec6ddf3f4d14",
+              "z": 3,
+              "threats": [],
+              "isEncrypted": true,
+              "storesCredentials": false,
+              "isALog": false,
+              "outOfScope": false,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "Employee DB\n(protected)"
+                },
+                ".undefined": {
+                  "class": "undefinedhasNoOpenThreats isInScope"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Process",
+              "size": {
+                "width": 160,
+                "height": 90
+              },
+              "position": {
+                "x": 200,
+                "y": 430
+              },
+              "angle": 0,
+              "id": "4424e760-c454-5bbe-8261-959a4c6b4189",
+              "z": 2,
+              "privilegeLevel": "Application",
+              "threats": [],
+              "outOfScope": false,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "Admin Panel\nVPN + MFA"
+                },
+                ".undefined": {
+                  "class": "undefinedhasNoOpenThreats isInScope"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "f44b1f65-669c-5a8e-89f1-cfe794298976"
+              },
+              "target": {
+                "id": "7c277461-737c-592f-ae13-9ae0aea951f9"
+              },
+              "vertices": [],
+              "id": "41bd4378-2458-5eb9-a092-1a4328f24fba",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "HTTPS/TLS — upload PDF",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 10,
+              "protocol": "HTTPS",
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "threats": [],
+              "outOfScope": false,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "7c277461-737c-592f-ae13-9ae0aea951f9"
+              },
+              "target": {
+                "id": "28c36591-a931-5658-a756-edc254e74ba2"
+              },
+              "vertices": [],
+              "id": "77c26f3e-ee2a-57e2-9b64-9a46a26885f0",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "Validated request",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 10,
+              "protocol": "HTTPS",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "threats": [],
+              "outOfScope": false,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "28c36591-a931-5658-a756-edc254e74ba2"
+              },
+              "target": {
+                "id": "292d3e03-5463-572c-b464-9c42d6f71c49"
+              },
+              "vertices": [],
+              "id": "ab27af74-cb5e-5393-9664-61f6b706a0e3",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "PDF",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 10,
+              "protocol": "internal",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "threats": [],
+              "outOfScope": false,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "292d3e03-5463-572c-b464-9c42d6f71c49"
+              },
+              "target": {
+                "id": "c36d46f7-1e55-5150-a102-b2d4d7e10d71"
+              },
+              "vertices": [],
+              "id": "1b66d01e-6e6c-55d2-807e-0bf6a28ae31c",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "Accepted PDF job",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 10,
+              "protocol": "queue",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "threats": [],
+              "outOfScope": false,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "c36d46f7-1e55-5150-a102-b2d4d7e10d71"
+              },
+              "target": {
+                "id": "55080bcf-01af-504f-9fb7-d261210f109d"
+              },
+              "vertices": [],
+              "id": "4dd70896-a2a3-560b-972f-540c4c4f5c27",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "Parse job",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 10,
+              "protocol": "queue",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "threats": [
+                {
+                  "status": "Open",
+                  "severity": "Medium",
+                  "title": "High-volume valid PDF submissions",
+                  "type": "Denial of service",
+                  "description": "An attacker may submit many valid PDFs that pass validation and consume parser capacity.",
+                  "mitigation": "Apply API rate limiting, quotas and bounded queue capacity."
+                }
+              ],
+              "outOfScope": false,
+              "hasOpenThreats": true,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "55080bcf-01af-504f-9fb7-d261210f109d"
+              },
+              "target": {
+                "id": "992219f8-8932-57bf-83dc-6abbcad8baaf"
+              },
+              "vertices": [],
+              "id": "e494747b-2e21-5d2a-9996-fdacd2680343",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "Structured candidate data",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 10,
+              "protocol": "internal API",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "threats": [
+                {
+                  "status": "Open",
+                  "severity": "Medium",
+                  "title": "Unknown PDF parser vulnerability",
+                  "type": "Elevation of privilege",
+                  "description": "A zero-day vulnerability may still exist in the parser. Sandboxing limits impact but does not remove the underlying vulnerability.",
+                  "mitigation": "Keep the parser patched, monitor dependencies, and retain sandbox isolation."
+                }
+              ],
+              "outOfScope": false,
+              "hasOpenThreats": true,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "992219f8-8932-57bf-83dc-6abbcad8baaf"
+              },
+              "target": {
+                "id": "300dab9e-6dc0-5372-bed1-d76ed9c65782"
+              },
+              "vertices": [],
+              "id": "3690ce2a-4f64-5f14-adff-cc1d4dde965f",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "Restricted write",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 10,
+              "protocol": "DB",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "threats": [],
+              "outOfScope": false,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "992219f8-8932-57bf-83dc-6abbcad8baaf"
+              },
+              "target": {
+                "id": "b634287a-37f9-5c8f-a7e5-ec6ddf3f4d14"
+              },
+              "vertices": [],
+              "id": "671881bf-06be-5edf-9fd1-43dbf050bcb9",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "Controlled import / minimum rights",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 10,
+              "protocol": "DB",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "threats": [],
+              "outOfScope": false,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "684a54db-f9b7-5627-b34b-41a16b95127e"
+              },
+              "target": {
+                "id": "4424e760-c454-5bbe-8261-959a4c6b4189"
+              },
+              "vertices": [],
+              "id": "cba4d955-9e24-50fc-9fc3-b53401746ed9",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "VPN + MFA",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 10,
+              "protocol": "HTTPS",
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "threats": [],
+              "outOfScope": false,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Boundary",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "x": 170,
+                "y": 40
+              },
+              "target": {
+                "x": 170,
+                "y": 560
+              },
+              "vertices": [],
+              "id": "87435a98-0e70-5556-8318-ec9f4a738576",
+              "z": 20,
+              "attrs": {}
+            },
+            {
+              "type": "tm.Boundary",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "x": 750,
+                "y": 40
+              },
+              "target": {
+                "x": 750,
+                "y": 560
+              },
+              "vertices": [],
+              "id": "d811bb31-2a2b-567a-98ef-fa7361ccc77b",
+              "z": 20,
+              "attrs": {}
+            },
+            {
+              "type": "tm.Boundary",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "x": 520,
+                "y": 300
+              },
+              "target": {
+                "x": 520,
+                "y": 570
+              },
+              "vertices": [],
+              "id": "494b876b-6038-5275-aa26-86d8aec7e97f",
+              "z": 20,
+              "attrs": {}
+            }
+          ],
+          "size": {
+            "height": 620,
+            "width": 1040
+          }
+        }
+      }
+    ],
+    "reviewer": ""
+  }
+}

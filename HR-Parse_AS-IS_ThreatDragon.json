@@ -1,0 +1,608 @@
+{
+  "summary": {
+    "title": "HR-Parse — AS-IS",
+    "owner": "Student Team",
+    "description": "Variant 13. PDF resumes are parsed on the HR-system server and parsed data is written to the shared Employee DB.",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [
+      {
+        "title": "AS-IS",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "diagramType": "STRIDE",
+        "id": 0,
+        "diagramJson": {
+          "cells": [
+            {
+              "type": "tm.Actor",
+              "size": {
+                "width": 160,
+                "height": 80
+              },
+              "position": {
+                "x": 20,
+                "y": 130
+              },
+              "angle": 0,
+              "id": "c3a8743b-8a73-5489-9451-e84079aff8f5",
+              "z": 1,
+              "threats": [],
+              "providesAuthentication": false,
+              "outOfScope": false,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "Candidate\n(browser)"
+                },
+                ".undefined": {
+                  "class": "undefinedhasNoOpenThreats isInScope"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Actor",
+              "size": {
+                "width": 160,
+                "height": 80
+              },
+              "position": {
+                "x": 20,
+                "y": 380
+              },
+              "angle": 0,
+              "id": "6d542420-c693-5211-aed0-ef8419755cbc",
+              "z": 1,
+              "threats": [],
+              "providesAuthentication": false,
+              "outOfScope": false,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "Administrator\n(HR/IT)"
+                },
+                ".undefined": {
+                  "class": "undefinedhasNoOpenThreats isInScope"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Process",
+              "size": {
+                "width": 160,
+                "height": 90
+              },
+              "position": {
+                "x": 260,
+                "y": 120
+              },
+              "angle": 0,
+              "id": "41fac377-e0e0-5e52-9a6c-c97da790acb4",
+              "z": 2,
+              "privilegeLevel": "Application",
+              "threats": [
+                {
+                  "status": "Open",
+                  "severity": "High",
+                  "title": "Unvalidated or disguised file reaches PDF parser",
+                  "type": "Tampering",
+                  "description": "The application does not reliably validate PDF type, MIME, magic bytes or complexity before parsing.",
+                  "mitigation": "Input Validation: allowlist PDF, verify MIME and magic bytes, and enforce size/page limits before parsing."
+                }
+              ],
+              "outOfScope": false,
+              "hasOpenThreats": true,
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "HR Web Application\n(Flask)"
+                },
+                ".undefined": {
+                  "class": "undefinedhasOpenThreats isInScope"
+                },
+                ".element-text": {
+                  "class": "element-text hasOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Store",
+              "size": {
+                "width": 170,
+                "height": 85
+              },
+              "position": {
+                "x": 520,
+                "y": 100
+              },
+              "angle": 0,
+              "id": "05a63e42-3814-5a12-b6f5-1527d80d7196",
+              "z": 3,
+              "threats": [
+                {
+                  "status": "Open",
+                  "severity": "High",
+                  "title": "Resource exhaustion using oversized or complex PDF",
+                  "type": "Denial of service",
+                  "description": "There are no effective file-size, CPU, RAM or parser-time limits. A malicious PDF can exhaust server resources.",
+                  "mitigation": "Input Validation + Sandboxing: size/page limits, CPU/RAM quotas and parser timeout."
+                }
+              ],
+              "isEncrypted": false,
+              "storesCredentials": false,
+              "isALog": false,
+              "outOfScope": false,
+              "hasOpenThreats": true,
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "Uploaded Files\n(/tmp)"
+                },
+                ".undefined": {
+                  "class": "undefinedhasOpenThreats isInScope"
+                },
+                ".element-text": {
+                  "class": "element-text hasOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Process",
+              "size": {
+                "width": 160,
+                "height": 90
+              },
+              "position": {
+                "x": 500,
+                "y": 300
+              },
+              "angle": 0,
+              "id": "e3da96f2-c523-5420-a956-77b84d8feade",
+              "z": 2,
+              "privilegeLevel": "root",
+              "threats": [
+                {
+                  "status": "Open",
+                  "severity": "Critical",
+                  "title": "Host compromise through malicious PDF",
+                  "type": "Elevation of privilege",
+                  "description": "The PDF parser runs on the HR server without sandboxing and with high privileges. A parser exploit can execute code in the HR environment.",
+                  "mitigation": "Sandboxing: isolated non-root container, read-only filesystem, no outbound network, CPU/RAM/time limits."
+                }
+              ],
+              "outOfScope": false,
+              "hasOpenThreats": true,
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "PDF Parser\n(LibreOffice)\nroot / no sandbox"
+                },
+                ".undefined": {
+                  "class": "undefinedhasOpenThreats isInScope"
+                },
+                ".element-text": {
+                  "class": "element-text hasOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Process",
+              "size": {
+                "width": 160,
+                "height": 90
+              },
+              "position": {
+                "x": 270,
+                "y": 390
+              },
+              "angle": 0,
+              "id": "78929320-aadb-50b3-91fe-b0bf951e258c",
+              "z": 2,
+              "privilegeLevel": "Application",
+              "threats": [],
+              "outOfScope": false,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasNoOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "Admin Panel"
+                },
+                ".undefined": {
+                  "class": "undefinedhasNoOpenThreats isInScope"
+                },
+                ".element-text": {
+                  "class": "element-text hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Store",
+              "size": {
+                "width": 170,
+                "height": 85
+              },
+              "position": {
+                "x": 780,
+                "y": 270
+              },
+              "angle": 0,
+              "id": "84a899fd-36a7-5d4f-8010-11c1eeaeb88d",
+              "z": 3,
+              "threats": [
+                {
+                  "status": "Open",
+                  "severity": "Critical",
+                  "title": "Excessive database privileges from parser",
+                  "type": "Elevation of privilege",
+                  "description": "The PDF parser has broad access to the shared Employee DB. A compromised parser can read or modify employee records.",
+                  "mitigation": "Least Privilege: remove direct broad DB access; use a dedicated service/account with narrowly scoped candidate-data permissions."
+                }
+              ],
+              "isEncrypted": false,
+              "storesCredentials": false,
+              "isALog": false,
+              "outOfScope": false,
+              "hasOpenThreats": true,
+              "attrs": {
+                ".element-shape": {
+                  "class": "element-shape hasOpenThreats isInScope"
+                },
+                "text": {
+                  "text": "Employee DB\n(shared HR database)"
+                },
+                ".undefined": {
+                  "class": "undefinedhasOpenThreats isInScope"
+                },
+                ".element-text": {
+                  "class": "element-text hasOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "c3a8743b-8a73-5489-9451-e84079aff8f5"
+              },
+              "target": {
+                "id": "41fac377-e0e0-5e52-9a6c-c97da790acb4"
+              },
+              "vertices": [],
+              "id": "8c937613-7254-52d9-bba6-e79054be4187",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "HTTP — upload PDF",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 10,
+              "protocol": "HTTP",
+              "isEncrypted": false,
+              "isPublicNetwork": true,
+              "threats": [
+                {
+                  "status": "Open",
+                  "severity": "High",
+                  "title": "Resume upload over HTTP",
+                  "type": "Information disclosure",
+                  "description": "Candidate resumes are uploaded over an unencrypted public-network flow. Personal data in the PDF can be intercepted or modified in transit.",
+                  "mitigation": "Least-Privilege Gateway: terminate HTTPS/TLS at the public gateway and disable plain HTTP."
+                }
+              ],
+              "outOfScope": false,
+              "hasOpenThreats": true,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "41fac377-e0e0-5e52-9a6c-c97da790acb4"
+              },
+              "target": {
+                "id": "05a63e42-3814-5a12-b6f5-1527d80d7196"
+              },
+              "vertices": [],
+              "id": "5de574d5-ca0c-5481-96e3-773335cca81d",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "Save PDF",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 10,
+              "protocol": "filesystem",
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "threats": [],
+              "outOfScope": false,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "05a63e42-3814-5a12-b6f5-1527d80d7196"
+              },
+              "target": {
+                "id": "e3da96f2-c523-5420-a956-77b84d8feade"
+              },
+              "vertices": [],
+              "id": "ffa5cdbc-0d51-53c6-8296-f3b2fb77734f",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "Read PDF",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 10,
+              "protocol": "filesystem",
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "threats": [],
+              "outOfScope": false,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "41fac377-e0e0-5e52-9a6c-c97da790acb4"
+              },
+              "target": {
+                "id": "e3da96f2-c523-5420-a956-77b84d8feade"
+              },
+              "vertices": [],
+              "id": "162c942d-e601-56ae-831a-cc1c7fcb4c67",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "Parse job",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 10,
+              "protocol": "local",
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "threats": [],
+              "outOfScope": false,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "e3da96f2-c523-5420-a956-77b84d8feade"
+              },
+              "target": {
+                "id": "84a899fd-36a7-5d4f-8010-11c1eeaeb88d"
+              },
+              "vertices": [],
+              "id": "61afdea6-f463-5615-95c5-b2b4d53f25ea",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "Parsed candidate data / broad DB access",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 10,
+              "protocol": "DB",
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "threats": [
+                {
+                  "status": "Open",
+                  "severity": "Critical",
+                  "title": "Excessive database privileges from parser",
+                  "type": "Elevation of privilege",
+                  "description": "The PDF parser has broad access to the shared Employee DB. A compromised parser can read or modify employee records.",
+                  "mitigation": "Least Privilege: remove direct broad DB access; use a dedicated service/account with narrowly scoped candidate-data permissions."
+                }
+              ],
+              "outOfScope": false,
+              "hasOpenThreats": true,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Flow",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "id": "6d542420-c693-5211-aed0-ef8419755cbc"
+              },
+              "target": {
+                "id": "78929320-aadb-50b3-91fe-b0bf951e258c"
+              },
+              "vertices": [],
+              "id": "67b19355-e1b6-5ac0-b327-cae66015c37d",
+              "labels": [
+                {
+                  "position": 0.5,
+                  "attrs": {
+                    "text": {
+                      "text": "HTTP, password",
+                      "font-weight": "400",
+                      "font-size": "small"
+                    }
+                  }
+                }
+              ],
+              "z": 10,
+              "protocol": "HTTP",
+              "isEncrypted": false,
+              "isPublicNetwork": true,
+              "threats": [],
+              "outOfScope": false,
+              "hasOpenThreats": false,
+              "attrs": {
+                ".marker-target": {
+                  "class": "marker-target hasNoOpenThreats isInScope"
+                },
+                ".connection": {
+                  "class": "connection hasNoOpenThreats isInScope"
+                }
+              }
+            },
+            {
+              "type": "tm.Boundary",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "x": 220,
+                "y": 40
+              },
+              "target": {
+                "x": 220,
+                "y": 520
+              },
+              "vertices": [],
+              "id": "8309af0c-bff3-51ff-b30b-92f7ee7299f4",
+              "z": 20,
+              "attrs": {}
+            },
+            {
+              "type": "tm.Boundary",
+              "size": {
+                "width": 10,
+                "height": 10
+              },
+              "smooth": true,
+              "source": {
+                "x": 730,
+                "y": 40
+              },
+              "target": {
+                "x": 730,
+                "y": 520
+              },
+              "vertices": [],
+              "id": "8cfe8b26-0300-5e4a-bf3e-0211d7af47b3",
+              "z": 20,
+              "attrs": {}
+            }
+          ],
+          "size": {
+            "height": 600,
+            "width": 1000
+          }
+        }
+      }
+    ],
+    "reviewer": ""
+  }
+}
